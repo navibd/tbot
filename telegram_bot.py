@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
     # Set up the Updater
 
-    updater = Updater(TOKEN)
+    updater = Updater(TOKEN, use_context=True)
 
     dp = updater.dispatcher
 
