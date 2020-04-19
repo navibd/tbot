@@ -42,7 +42,8 @@ if __name__ == "__main__":
 
 
 
-    # Port is givet = os.environ.get('PORT')
+    # Port is given by Heroku
+    PORT = os.environ.get('PORT')
 
 
 
