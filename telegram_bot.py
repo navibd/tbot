@@ -23,7 +23,7 @@ def main():
 
     # set PORT to be used with Heroku
 
-    PORT = os.environ.get('PORT')
+    PORT = os.environ.get('8443')
 
 
 
@@ -41,17 +41,6 @@ def main():
 
     
 
-    # ConversationHandler
-
-    .
-
-    .
-
-    
-
-    # add conversation handler to dispatcher
-
-    dispatcher.add_handler(conv_handler)
 
     
 
