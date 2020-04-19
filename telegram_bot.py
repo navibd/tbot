@@ -1,8 +1,10 @@
+
 from telegram.ext import Updater
 
 from telegram.ext import CommandHandler
 
 import logging
+import os
 
 
 
@@ -23,7 +25,7 @@ def main():
 
     # set PORT to be used with Heroku
 
-    PORT = os.environ.get('8443')
+    PORT = os.environ.get('PORT','8443')
 
 
 
