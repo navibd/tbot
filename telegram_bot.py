@@ -31,7 +31,7 @@ def main():
 
     updater = Updater(token=TOKEN, use_context=True)
 
-    # set   dispatcher = updater.dispatcher
+    dispatcher = updater.dispatcher
 
     # a print message to log successful initiation of the bot
 
@@ -64,11 +64,7 @@ def main():
 
     # start the bot
 
-    # updater.start_polling()
-
-
-
-    # run the bot until 
+  updater.start_polling()
 
 
 
@@ -94,7 +90,9 @@ def main():
 
 
 
-dispatcher=updater.dispatcher
+
+
+
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 
@@ -117,4 +115,9 @@ dispatcher.add_handler(start_command)
 
 
 updater.start_polling()
+
+
+if __name__ == "__main__":
+
+    main()
 
