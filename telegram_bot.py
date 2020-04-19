@@ -1,125 +1,70 @@
-
-from telegram.ext import Updater
-
-from telegram.ext import CommandHandler
-
 import logging
+
 import os
 
 
 
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-# all code before the main function stays as it is
 
 
 
-def main():
 
-    # setting to appropriate values
+def start(bot, update):
 
-    TOKEN = "934772110:AAEZlF71gtR_jBL2V4kEjdOy09QJHYWqC2A"
+    update.effective_message.reply_text("Hi!!!")
 
-    APPNAME = "ttbot001"
 
-    
 
-    # set PORT to be used with Heroku
 
-    PORT = os.environ.get('PORT','8443')
 
+def echo(bot, update):
 
+    update.effective_message.reply_text(update.effective_message.text)
 
-    # set up updater
 
-    updater = Updater(token=TOKEN, use_context=True)
 
-    dispatcher = updater.dispatcher
+def error(bot, update, error):
 
-    # a print message to log successful initiation of the bot
+    logger.warning('Update "%s" caused error "%s"', update, error)
 
-    # this is for self
 
-    print("Bot started")
 
-    
-
-
-    
-
-    # starting webhook and setting it up with heroku app
-
-    updater.start_webhook(listen="0.0.0.0",
-
-                            port=(PORT),
-
-                            url_path=TOKEN)
-
-    
-
-    updater.bot.setWebhook(
-
-      "https://{}.herokuapp.com/{}".format(APPNAME, TOKEN)
-
-      )
-
-
-
-    # start the bot
-
-  updater.start_polling()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-
-                     level=logging.INFO)
-
-
-
-def start(update,context):
-
-    chat_id=update.effective_chat.id
-
-    context.bot.send_message(chat_id, text="Happy Mangolina")
-
-
-
-start_command=CommandHandler("start" , start)
-
-dispatcher.add_handler(start_command)
-
-
-
-updater.start_polling()
 
 
 if __name__ == "__main__":
 
-    main()
+    # Set these variable to the appropriate values
 
+    TOKEN = "934772110:AAEZlF71gtR_jBL2V4kEjdOy09QJHYWqC2A"
+    NAME  = "ttbot001"
+
+
+
+    # Port is given by Heroku
+
+    PORT = os.environ.get('PORT')
+
+
+
+    # Enable logging
+
+    logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+
+                        level=logging.INFO)
+
+    logger = logging.getLogger(__name__)
+
+
+
+    # Set up the Updater
+
+    updater = Updater(TOKEN)
+
+    dp = updater.dispatcher
+
+    # Add handlers
+
+    dp.add_handler(CommandHandler('start', start))
+
+    dp.add_handler(MessageHandler(Filters.te
